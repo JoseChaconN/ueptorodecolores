@@ -1,0 +1,178 @@
+<?php
+require('fpdf/fpdf.php');
+include_once("inicia.php");
+class PDF extends FPDF 
+{
+	function Header()
+	{
+		$this->Image('assets/img/logo.png',35,9,20,23);
+		$this->SetFont('Arial','',15);
+		$this->Cell(80);
+		$this->Cell(30,6,utf8_decode(NKXS),0,1,'C');
+		$this->Cell(80);
+		$this->Cell(30,6,utf8_decode(EKKS),0,1,'C');
+		$this->Cell(80);
+		$this->SetFont('Arial','',10);
+		$this->Cell(30,6,'Inscrito en el M.P.P.E bajo el codigo '.CKLS,0,1,'C');
+		$this->Cell(80);
+		$this->Cell(30,6,'Rif.: '.RIFCOLM.' - Telefono '.TELEMPM,0,1,'C');
+		$this->Ln(10);
+		$this->Cell(80);
+		$this->SetFont('Arial','',15);
+		$this->Cell(30,6,'Periodo Escolar '.PROXANOE,0,1,'C');
+	}
+	function Footer()
+	{
+		$this->SetY(-20);
+		$this->SetFont('Arial','I',8);
+		$this->Cell(0,5,'Desarrollado por jesistemas.com c.a.',0,1,'C');
+		$this->Cell(0,5,'Pagina '.$this->PageNo().'/{nb}',0,0,'C');
+	}
+}
+$pdf = new PDF();
+$pdf->AliasNbPages();
+$pdf->Addpage();
+$pdf->SetFillColor(232,232,232);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6, 'Manual de Usuario',1,1,'C',1);
+$pdf->Image('imagenes/google.png',10,60,190,18);
+$pdf->SetFont('Arial','',10);
+$pdf->Ln(14);
+$pdf->Cell(20,6,'',0,0,'L');
+$pdf->Cell(90,6,DOMINIO,0,1,'L');
+$pdf->Ln(4);
+$pdf->SetFont('Arial','B',10);
+$pdf->SetX(10);
+$pdf->Cell(190,6,utf8_decode('¿Como buscar mi página web?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a un navegador (Google Chrome)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-Escriba el link de la página web '.DOMINIO.' en la barra de dirección como se muestra en la imagen,  este link debe ser ingresado en minúscula y sin espacios en blanco.'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-Una vez escrito correctamente el link pulse la tecla enter y ya estará ingresando al portal web de nuestra institución'),0,1,'L');	
+
+
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como REGISTRARME en la página? (Solo para estudiantes nuevo ingreso)' ),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-presione un Click en la opción Inscribirme '),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-Cargue todos los datos solicitados (La cedula del alumno va corrida sin puntos (Ej. 30123456), es muy importante que coloque un correo valido ya que a este se le enviara su contraseña en caso de olvidarla)'),0,1,'L');
+$pdf->MultiCell(190,6,'3.-presione un Click en Foto Alumno y Foto Representante (Seleccione una foto del alumno y del representante la cual se usara para la planilla, carnet etc.)',0,1,'L');	
+$pdf->MultiCell(190,6,'4.-Una vez llenado todo el formulario, presione un Click en el boton Guardar.',0,1,'L');		
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como Iniciar Sesion en la página?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Una vez Registrado el Alumno en la Página (vea pasos para REGISTRARME en la página )'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-presione un Click en la opción (Ingresar)'),0,1,'L');
+$pdf->MultiCell(190,6,'3.-Ingrese la cedula del Alumno (Usuario)',0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('4.-Ingrese su clave de acceso (Contraseña)'),0,1,'L');	
+$pdf->MultiCell(190,6,'5.-Presione un Click en el boton Ingresar.',0,1,'L');
+$pdf->Image('imagenes/ingresar.png',100,180,90,12);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como imprimir mi PLANILLA DE INSCRIPCION?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-En la seccion de REPORTES ubique la opción (Planilla de Inscripción)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Planilla de Inscripción)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-Verifique que todos sus datos esten correctos',0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('5.-presione un Click en el icono de la impresora ( La planilla sera impresa en hoja tamaño oficio, en caso de no salir completa la planilla, descarguela y abra el archivo descargado con Adobe Reader y en las opciones de impresion seleccione ajustar paginas grandes e imprimala desde ahi.'),0,1,'L');
+$pdf->Image('imagenes/planInsc.png',140,218,50,12);
+$pdf->Addpage();
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como modificar o actualizar mis DATOS PERSONALES?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (PROCESOS)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Perfil del Estudiante)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-Verifique o modifique sus datos',0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('5.-presione un Click en la opción (Guardar)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode(''),0,1,'L');
+$pdf->Image('imagenes/perfil.png',170,57,20,40);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como consultar mi HISTORIAL DE PAGOS?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (PROCESOS)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Historial de Pagos)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-Verifique sus pagos',0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('5.-presione un Click en la opción (Regresar)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode(''),0,1,'L');
+$pdf->Image('imagenes/historial.png',170,107,20,40);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como ANTICIPAR UN PAGO?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (PROCESOS)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Registrar Pagos)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-Ingrese todos los datos solicitados en el formulario',0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('5.-presione un Click en la opción (Registrar)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode(''),0,1,'L');
+$pdf->Image('imagenes/pagos.png',170,155,20,40);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como imprimir una CONSTANCIA DE INSCRIPCION?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (Reportes)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Constancia de Inscripción)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-presione un Click en el icono de la impresora',0,1,'L');
+$pdf->Image('imagenes/consInsc.png',140,212,50,12);
+$pdf->Addpage();
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como imprimir mi CARNET DE ESTUDIOS?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (Reportes)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Carnet de Estudios)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-presione un Click en el icono de la impresora',0,1,'L');
+$pdf->Image('imagenes/carnet.png',140,70,50,12);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como imprimir una CONSTANCIA DE ESTUDIOS?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (Reportes)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Constancia de Estudios)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('4.-presione un Click en el icono de la impresora'),0,1,'L');
+$pdf->Image('imagenes/consEst.png',140,105,50,12);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como imprimir una CONSTANCIA DE ASISTENCIA? (Representantes)'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (Reportes)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Constancia de Asistencia)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('4.-Ingrese el motivo por el cual asiste a la Institución'),0,1,'L');
+$pdf->MultiCell(190,6,'5.-presione un Click en el boton (Imprimir)',0,1,'L');
+$pdf->MultiCell(190,6,'6.-presione un Click en el icono de la impresora',0,1,'L');
+$pdf->Image('imagenes/consAsis.png',140,145,50,12);
+$pdf->Ln();
+$pdf->SetX(10);
+$pdf->SetFont('Arial','B',10);
+$pdf->Cell(190,6,utf8_decode('¿Como imprimir mi BOLETIN DE NOTAS?'),0,1,'L');
+$pdf->SetFont('Arial','',10);
+$pdf->MultiCell(190,6,utf8_decode('1.-Ingrese a la página (vea pasos para Iniciar Sesion en la Página)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('2.-ubiquese en la Sección (Reportes)'),0,1,'L');
+$pdf->MultiCell(190,6,utf8_decode('3.-presione un Click en la opción (Boletín de Calificaciones)'),0,1,'L');
+$pdf->MultiCell(190,6,'4.-presione un Click en el icono de la impresora',0,1,'L');
+$pdf->Image('imagenes/boletin.png',140,188,50,12);
+
+$pdf->Output();
+	
+	
+?>
